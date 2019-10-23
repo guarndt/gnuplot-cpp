@@ -1094,11 +1094,10 @@ Gnuplot::~Gnuplot()
 
     // A stream opened by popen() should be closed by pclose()
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__TOS_WIN__)
-    if (_pclose(gnucmd) == -1)
+    _pclose(gnucmd);
 #elif defined(unix) || defined(__unix) || defined(__unix__) || defined(__APPLE__)
-    if (pclose(gnucmd) == -1)
+    pclose(gnucmd);
 #endif
-        throw GnuplotException("Problem closing communication to gnuplot");
 }
 
 
